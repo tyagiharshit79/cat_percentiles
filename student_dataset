@@ -130,6 +130,3 @@ INSERT INTO Students (app_no, name, class_x_marks, class_xii_marks, undergrad_pe
 (1100, 'Tara Roy', 87.50, 84.50, 78.50, 2, 93.0);
 
 select * from students;
-
-
-
