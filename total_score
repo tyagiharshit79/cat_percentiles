@@ -1,0 +1,46 @@
+--Setting Total Score
+
+-- Update Class X score
+UPDATE Students
+SET class_x_score_received = CASE
+    WHEN class_x_marks BETWEEN 90 AND 100 THEN 5
+    WHEN class_x_marks BETWEEN 80 AND 89.99 THEN 4
+    WHEN class_x_marks BETWEEN 70 AND 79.99 THEN 3
+    WHEN class_x_marks BETWEEN 60 AND 69.99 THEN 2
+    ELSE 1
+END
+WHERE app_no IS NOT NULL;
+
+-- Update Class XII score
+UPDATE Students
+SET class_xii_score_received = CASE
+    WHEN class_xii_marks BETWEEN 90 AND 100 THEN 5
+    WHEN class_xii_marks BETWEEN 80 AND 89.99 THEN 4
+    
+    WHEN class_xii_marks BETWEEN 70 AND 79.99 THEN 3
+    WHEN class_xii_marks BETWEEN 60 AND 69.99 THEN 2
+    ELSE 1
+END 
+WHERE app_no IS NOT NULL; 
+
+UPDATE Students
+SET undergrad_score_received = CASE
+    WHEN undergrad_percentage BETWEEN 90 AND 100 THEN 5
+    WHEN undergrad_percentage BETWEEN 80 AND 89.99 THEN 4
+    WHEN undergrad_percentage BETWEEN 70 AND 79.99 THEN 3
+    WHEN undergrad_percentage BETWEEN 60 AND 69.99 THEN 2
+    ELSE 1
+END
+WHERE app_no IS NOT NULL; 
+
+-- Update Work Experience score
+UPDATE Students
+SET work_experience_score = CASE
+    WHEN work_experience BETWEEN 0 AND 2 THEN 1
+    WHEN work_experience BETWEEN 2 AND 4 THEN 2
+    ELSE 3
+END
+WHERE app_no IS NOT NULL; 
+
+UPDATE Students
+SET total_score = class_x_score_received + class_xii_score_received + undergrad_score_received + work_experience_score;
