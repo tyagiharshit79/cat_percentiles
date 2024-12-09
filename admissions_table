@@ -1,0 +1,20 @@
+-- Step 2: Populate the Admissions Table
+INSERT INTO Admissions (app_no, name, cat_percentile, total_score, coll_name)
+SELECT 
+    s.app_no,
+    s.name,
+    s.cat_percentile,
+    (s.class_x_score_received + s.class_xii_score_received + s.undergrad_score_received + s.work_experience_score) AS total_score,
+    CASE
+        WHEN s.cat_percentile > 99 AND (s.class_x_score_received + s.class_xii_score_received + s.undergrad_score_received + s.work_experience_score) >= 15 THEN 'FMS'
+        WHEN s.cat_percentile > 98 AND (s.class_x_score_received + s.class_xii_score_received + s.undergrad_score_received + s.work_experience_score) >= 15 THEN 'IIM Ahmedabad'
+        WHEN s.cat_percentile > 98 AND (s.class_x_score_received + s.class_xii_score_received + s.undergrad_score_received + s.work_experience_score) >= 14 THEN 'IIM Bangalore'
+        WHEN s.cat_percentile > 97 AND (s.class_x_score_received + s.class_xii_score_received + s.undergrad_score_received + s.work_experience_score) >= 15 THEN 'MDI'
+        WHEN s.cat_percentile > 96 AND (s.class_x_score_received + s.class_xii_score_received + s.undergrad_score_received + s.work_experience_score) >= 14 THEN 'IIFT'
+        WHEN s.cat_percentile > 95 AND (s.class_x_score_received + s.class_xii_score_received + s.undergrad_score_received + s.work_experience_score) >= 14 THEN 'IMI'
+        WHEN s.cat_percentile > 95 AND (s.class_x_score_received + s.class_xii_score_received + s.undergrad_score_received + s.work_experience_score) >= 13 THEN 'IMT'
+        WHEN s.cat_percentile > 94 AND (s.class_x_score_received + s.class_xii_score_received + s.undergrad_score_received + s.work_experience_score) >= 13 THEN 'BITSOM'
+        WHEN s.cat_percentile > 90 AND (s.class_x_score_received + s.class_xii_score_received + s.undergrad_score_received + s.work_experience_score) >= 12 THEN 'Great Lakes'
+        ELSE 'GIM'
+    END AS coll_name
+FROM Students s;
