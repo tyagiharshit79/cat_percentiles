@@ -1,0 +1,13 @@
+use cat;
+
+INSERT INTO Colleges (coll_id, coll_name) VALUES
+(901, 'FMS'),
+(902, 'MDI'),
+(903, 'IMI'),
+(904, 'IIFT'),
+(905, 'IMT'),
+(906, 'GIM'),
+(907, 'Great Lakes'),
+(908, 'BITSOM'),
+(909, 'IIM Ahmedabad'),
+(910, 'IIM Bangalore');
